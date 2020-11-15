@@ -25,8 +25,8 @@ agent {label 'TestNode' }
 
 					displayMessage("Download files from GitHub - Begin")
 
-					git url: 'https://github.com/jmunuswa/website.git',branch: '${env.BRANCH_NAME}' 
-
+					git url: 'https://github.com/jmunuswa/website.git',branch: 'master'
+					
 				displayMessage("Download files from GitHub - End")
             }
  
