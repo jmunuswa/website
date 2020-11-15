@@ -3,7 +3,7 @@ agent {label 'TestNode' }
 	environment
 	{
 		def dockerHUBUser = 'jmunuswa'
-		def gitURL = 'https://github.com/jmunuswa/azure-webapp.git'
+		def gitURL = 'https://github.com/jmunuswa/website.git'
 		def registryCredential = 'dockerhub_id' 
 		def seleniumTestJar = 'CapestonePrj1.jar'
 		def argServer = 'http://18.220.108.130/index.htm'
