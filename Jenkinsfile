@@ -6,7 +6,7 @@ agent {label 'TestNode' }
 		def gitURL = 'https://github.com/jmunuswa/website.git'
 		def registryCredential = 'dockerhub_id' 
 		def seleniumTestJar = 'CapestonePrj1.jar'
-		def argServer = 'http://18.220.108.130/index.htm'
+		def argServer = 'http://18.191.155.113:8080/index.html'
 		def argDriver = '/home/ubuntu/chromedriver'
 		def argOS ='L'
 		def argInstname = 'capstnprj2'
