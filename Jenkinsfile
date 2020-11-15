@@ -40,7 +40,7 @@ agent {label 'TestNode' }
 			
 				displayMessage("Build Docker image - Begin")
 				
-					sh "sudo docker build -t ${dockerHUBUser}/${argInstname)-${env.BRANCH_NAME} ."
+					sh "sudo docker build -t ${dockerHUBUser}/${argInstname}-${env.BRANCH_NAME} ."
 				
 				displayMessage("Build Docker image - End")
             }
