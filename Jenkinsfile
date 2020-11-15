@@ -57,7 +57,7 @@ agent {label 'TestNode' }
 				 displayMessage("Run docker image and test using selenium - Begin")
 				 
 					 sh "sudo docker rm -f ${argInstname} || true"
-					 sh "sudo docker run -d -p 80:80 --name ${argInstname}  ${dockerHUBUser}/${argInstname}-${env.BRANCH_NAME}"
+					 sh "sudo docker run -d -p 8080:80 --name ${argInstname}  ${dockerHUBUser}/${argInstname}-${env.BRANCH_NAME}"
 					 sh "cp ./${seleniumTestJar}  /home/ubuntu"
 					 sh "java -jar ${seleniumTestJar} ${argServer} ${argOS}"
 				 
