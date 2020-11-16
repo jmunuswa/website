@@ -26,7 +26,7 @@ agent {label 'TestNode' }
 
 					displayMessage("Download files from GitHub - Begin")
 
-					git url: "$(gitURL)",branch: "${env.BRANCH_NAME}"
+					git url: "${gitURL}",branch: "${env.BRANCH_NAME}"
 					
 				displayMessage("Download files from GitHub - End")
             }
