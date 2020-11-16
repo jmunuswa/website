@@ -10,6 +10,7 @@ agent {label 'TestNode' }
 		def argDriver = '/home/ubuntu/chromedriver'
 		def argOS ='L'
 		def argInstname = 'capstnprj2'
+		def argK8SName = 'capstnprj2'
 	}
     stages 
 	{ 
@@ -25,7 +26,7 @@ agent {label 'TestNode' }
 
 					displayMessage("Download files from GitHub - Begin")
 
-					git url: 'https://github.com/jmunuswa/website.git',branch: 'master'
+					git url: "$(gitURL)",branch: "${env.BRANCH_NAME}"
 					
 				displayMessage("Download files from GitHub - End")
             }
@@ -81,27 +82,24 @@ agent {label 'TestNode' }
 		
 		stage('DeploytoPROD') 
 		{ 
-			when 
-			{
-				branch "notdefined"
-			}
 
             steps 
 			{
-			
-			
+						
 				node('ProdNode')
 				{
 				
-
 					 
-					 displayMessage("Run docker image in PROD - Begin")
+					 displayMessage("Run K8S in PROD - Begin")
 					 
-					 	sh "sudo docker rm -f capstnprj1-${env.BRANCH_NAME} || true"
-						sh "sudo docker image pull ${dockerHUBUser}/capstnprj1-${env.BRANCH_NAME}"
-						sh "sudo docker run -d -p 80:80 --name capstnprj1-${env.BRANCH_NAME}  ${dockerHUBUser}/capstnprj1-${env.BRANCH_NAME}"
 					 
-					 displayMessage("Run docker image in PROD - End")
+						kubectl delete service ${argK8SName} || true
+						kubectl delete deployment ${argK8SName} || true
+					 
+						kubectl create deployment ${argK8SName} --image=${dockerHUBUser}/${argInstname}-${env.BRANCH_NAME} --port=80 --replicas=2
+						kubectl expose deployment ${argK8SName} --type=NodePort  --port=80
+					 
+					 displayMessage("Run K8S in PROD - End")
 				}
 
                 
