@@ -93,11 +93,11 @@ agent {label 'TestNode' }
 					 displayMessage("Run K8S in PROD - Begin")
 					 
 					 
-						kubectl delete service ${argK8SName} || true
-						kubectl delete deployment ${argK8SName} || true
+						sh "kubectl delete service ${argK8SName} || true"
+						sh "kubectl delete deployment ${argK8SName} || true"
 					 
-						kubectl create deployment ${argK8SName} --image=${dockerHUBUser}/${argInstname}-${env.BRANCH_NAME} --port=80 --replicas=2
-						kubectl expose deployment ${argK8SName} --type=NodePort  --port=80
+						sh "kubectl create deployment ${argK8SName} --image=${dockerHUBUser}/${argInstname}-${env.BRANCH_NAME} --port=80 --replicas=2"
+						sh "kubectl expose deployment ${argK8SName} --type=NodePort  --port=80"
 					 
 					 displayMessage("Run K8S in PROD - End")
 				}
